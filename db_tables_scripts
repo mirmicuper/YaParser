@@ -1,0 +1,32 @@
+-- Создание таблицы LINKS
+CREATE TABLE IF NOT EXISTS LINKS (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    link TEXT NOT NULL,
+    discount REAL DEFAULT NULL,
+    datetime_added DATETIME DEFAULT NULL
+);
+
+-- Создание таблицы PRODUCTS
+CREATE TABLE IF NOT EXISTS PRODUCTS (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name TEXT DEFAULT NULL,
+    min_price REAL DEFAULT NULL,
+    min_price_discount REAL DEFAULT NULL,
+    discount REAL DEFAULT NULL,
+    promocode TEXT DEFAULT NULL,
+    promocode_discount REAL DEFAULT NULL,
+    promo3eq2 BOOLEAN DEFAULT false,
+    promo4eq3 BOOLEAN DEFAULT false,
+    promo5eq4 BOOLEAN DEFAULT false,
+    ya_bank_pay_price REAL DEFAULT NULL,
+    max_discount REAL DEFAULT NULL
+);
+
+-- Создание таблицы NOTIFICATIONS
+CREATE TABLE IF NOT EXISTS NOTIFICATIONS (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_id INTEGER NOT NULL,
+    status TEXT DEFAULT NULL,
+    datetime_sended DATETIME DEFAULT NULL,
+    FOREIGN KEY (product_id) REFERENCES PRODUCTS(id)
+);
